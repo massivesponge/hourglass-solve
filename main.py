@@ -5,7 +5,7 @@ Hourglass Stats
 Loss = 700
 
 Win (with 0 streak) = 4200
-Win (with 1 streak) = 5675
+Win (with 1 streak) = 4675
 Win (with 2 streak) = 5190
 Win (with 3 streak) = 5688
 Win (with >3 streak) = 6600
@@ -20,7 +20,7 @@ Streak 4 Lower = 7800 + 3000 * (streak - 4)
 
 import random
 
-simulations = 1000000
+simulations = 1_000_000
 
 def get_lower_xp(streak):
     if streak == 1:
@@ -36,7 +36,7 @@ def get_win_xp(streak):
     if streak == 0:
         return 4200
     elif streak == 1:
-        return 5675
+        return 4675
     elif streak == 2:
         return 5190
     elif streak == 3:
