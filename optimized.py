@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numba import jit
 
-SIMULATIONS = 100_000_000
+SIMULATIONS = 10_000_000
 
 @jit(nopython=True)
 def simulate(streak_goal, winrate):
     LOWER_XP = np.array([0, 1100, 2640, 4680] + [7800 + 3000 * (i - 4) for i in range(4, 20)])
-    WIN_XP = np.array([4200, 5675, 5190, 5688] + [6600] * 16)
+    WIN_XP = np.array([4200, 4675, 5190, 5688] + [6600] * 16)
     
     streak = 0
     xp = 0
