@@ -2,7 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numba import jit
 
-SIMULATIONS = 10_000_000
+SIMULATIONS = 1_000_000_000
+
+GAME_TIME_COST = 10 # minutes average
+LOWER_TIME_COST = 10 # minutes average
 
 @jit(nopython=True)
 def simulate(streak_goal, winrate):
@@ -11,8 +14,12 @@ def simulate(streak_goal, winrate):
     
     streak = 0
     xp = 0
-    for _ in range(SIMULATIONS):
+
+    sim_time = 0
+
+    while sim_time < SIMULATIONS:
         win = np.random.random() < winrate
+        sim_time += GAME_TIME_COST
         if win:
             xp += WIN_XP[min(streak, 19)]
             streak += 1
@@ -22,6 +29,7 @@ def simulate(streak_goal, winrate):
         if streak >= streak_goal:
             xp += LOWER_XP[min(streak, 19)]
             streak = 0
+            sim_time += LOWER_TIME_COST
     return xp
 
 def find_optimal_streak(winrate):
